@@ -157,30 +157,61 @@
         </div>
 
         <section class="cinema" id="campana">
-            <div class="cinema-head">
-                <p class="section-index">01</p>
-                <div>
-                    <p class="eyebrow eyebrow-light">Video publicitario</p>
-                    <h2>No dejes pasar este sentimiento</h2>
-                    <p class="cinema-lead">La pieza central de la campaña. Un minuto para emocionar, recordar y decidir que la cultura canaria no se rinde.</p>
+            <div class="cinema-body">
+                <div class="cinema-head">
+                    <p class="section-index">01</p>
+                    <div>
+                        <p class="eyebrow eyebrow-light">Video publicitario</p>
+                        <h2>No dejes pasar este sentimiento</h2>
+                        <p class="cinema-lead">La pieza central de la campaña. Un minuto para emocionar, recordar y decidir que la cultura canaria no se rinde.</p>
+                    </div>
+                </div>
+                <div class="cinema-stage">
+                <div class="cinema-screen" id="cinema-screen" tabindex="0">
+                    <video
+                        class="cinema-video"
+                        id="cinema-video"
+                        poster="img/video-portada.jpg"
+                        title="Video publicitario de Magua Canaria"
+                        preload="auto"
+                        playsinline
+                        muted
+                        autoplay
+                    >
+                        <source src="video/magua-web.mp4" type="video/mp4">
+                    </video>
+                    <p class="cinema-chip" id="cinema-chip">En emisión · 90 s</p>
+                    <span class="cinema-frame" aria-hidden="true"></span>
+                    <button class="cinema-play" id="cinema-play" type="button" aria-label="Reproducir el video de Magua Canaria con sonido">
+                        <span class="cinema-veil" aria-hidden="true"></span>
+                        <span class="play-ui">
+                            <span class="play-orb" aria-hidden="true">
+                                <img src="img/Sol.png" alt="">
+                                <span class="play-mark"></span>
+                            </span>
+                            <span class="play-copy">
+                                <span class="play-label">Escúchalo</span>
+                                <span class="play-meta">Pulsa el sol</span>
+                            </span>
+                        </span>
+                    </button>
+                    <div class="cinema-dock" id="cinema-controls">
+                        <button class="cinema-hit" id="cinema-toggle" type="button" aria-label="Pausar">
+                            <span class="cinema-glyph cinema-glyph-pause" aria-hidden="true"></span>
+                            <span class="cinema-glyph cinema-glyph-play" aria-hidden="true"></span>
+                        </button>
+                        <span class="cinema-now" id="cinema-now">0:00</span>
+                        <input class="cinema-seek" id="cinema-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Progreso del vídeo">
+                        <span class="cinema-end" id="cinema-end">1:30</span>
+                        <button class="cinema-hit cinema-mute" id="cinema-mute" type="button" aria-label="Activar sonido">
+                            <img src="img/Sol.png" alt="">
+                        </button>
+                        <button class="cinema-hit cinema-fs" id="cinema-fs" type="button" aria-label="Ampliar">
+                            <span class="cinema-expand" aria-hidden="true"></span>
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="cinema-screen" id="cinema-screen">
-                <video
-                    class="cinema-video"
-                    id="cinema-video"
-                    poster="img/video-portada.jpg"
-                    title="Video publicitario de Magua Canaria"
-                    preload="auto"
-                    playsinline
-                    muted
-                    autoplay
-                    controls
-                    controlslist="nodownload"
-                >
-                    <source src="video/magua-web.mp4" type="video/mp4">
-                </video>
-                <button class="cinema-sound" id="cinema-sound" type="button">Activar sonido</button>
             </div>
             <div class="cinema-rail" aria-hidden="true"></div>
         </section>
@@ -442,13 +473,13 @@
     <button class="to-top" id="to-top" type="button" aria-label="Volver arriba">↑</button>
 
     <dialog class="lightbox" id="lightbox" aria-labelledby="lightbox-title">
+        <img id="lightbox-image" src="img/folletos/Blanco/2_Blanco.png" alt="">
         <div class="lightbox-toolbar">
             <p id="lightbox-title">Cartel de la campaña</p>
             <form method="dialog">
                 <button type="submit" aria-label="Cerrar">Cerrar</button>
             </form>
         </div>
-        <img id="lightbox-image" src="img/folletos/Blanco/2_Blanco.png" alt="">
     </dialog>
 
     <script src="script.js"></script>

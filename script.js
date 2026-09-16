@@ -1,6 +1,29 @@
 (() => {
     document.documentElement.classList.add("js");
 
+    if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+    }
+
+    const navEntry = performance.getEntriesByType("navigation")[0];
+    const isReload = navEntry && navEntry.type === "reload";
+    const pinHome = () => {
+        if (window.location.hash && window.location.hash !== "#inicio") {
+            return;
+        }
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+    };
+    if (isReload || !window.location.hash || window.location.hash === "#inicio") {
+        if (isReload && (!window.location.hash || window.location.hash === "#inicio")) {
+            history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+        }
+        pinHome();
+        requestAnimationFrame(pinHome);
+        window.addEventListener("load", pinHome, { once: true });
+    }
+
     const header = document.getElementById("cabecera");
     const menuToggle = document.getElementById("menu-toggle");
     const nav = document.getElementById("menu-principal");
@@ -87,44 +110,177 @@
     };
 
     const cinemaVideo = document.getElementById("cinema-video");
-    const cinemaSound = document.getElementById("cinema-sound");
+    const cinemaPlay = document.getElementById("cinema-play");
+    const cinemaScreen = document.getElementById("cinema-screen");
+    const cinemaFs = document.getElementById("cinema-fs");
+    const cinemaToggle = document.getElementById("cinema-toggle");
+    const cinemaSeek = document.getElementById("cinema-seek");
+    const cinemaNow = document.getElementById("cinema-now");
+    const cinemaEnd = document.getElementById("cinema-end");
+    const cinemaMute = document.getElementById("cinema-mute");
+    const cinemaChip = document.getElementById("cinema-chip");
     const axisTabs = [...document.querySelectorAll(".axis-tabs [role='tab']")];
     const posterStages = [...document.querySelectorAll(".poster-stage")];
 
-    const startCinema = () => {
-        if (!cinemaVideo || !cinemaVideo.paused) {
+    const formatTime = (seconds) => {
+        const total = Math.max(0, Math.floor(seconds || 0));
+        return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, "0")}`;
+    };
+
+    const syncCinemaUi = () => {
+        if (!cinemaVideo) {
             return;
         }
-        const playing = cinemaVideo.play();
-        if (playing && typeof playing.catch === "function") {
-            playing.catch(() => {});
+        const duration = cinemaVideo.duration || 90;
+        if (cinemaSeek && !cinemaSeek.matches(":active")) {
+            cinemaSeek.value = String(Math.round((cinemaVideo.currentTime / duration) * 1000) || 0);
+        }
+        if (cinemaNow) {
+            cinemaNow.textContent = formatTime(cinemaVideo.currentTime);
+        }
+        if (cinemaEnd) {
+            cinemaEnd.textContent = formatTime(duration);
+        }
+        cinemaToggle?.classList.toggle("is-paused", cinemaVideo.paused);
+        cinemaToggle?.setAttribute("aria-label", cinemaVideo.paused ? "Reproducir" : "Pausar");
+        cinemaMute?.classList.toggle("is-live", !cinemaVideo.muted);
+        cinemaMute?.setAttribute("aria-label", cinemaVideo.muted ? "Activar sonido" : "Silenciar");
+        cinemaScreen?.classList.toggle("is-paused", cinemaVideo.paused);
+        cinemaScreen?.classList.toggle("has-sound", !cinemaVideo.muted);
+        const full = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+        cinemaFs?.classList.toggle("is-full", full);
+        cinemaFs?.setAttribute("aria-label", full ? "Salir de pantalla completa" : "Ampliar");
+        if (cinemaChip) {
+            cinemaChip.textContent = cinemaVideo.paused ? "En pausa · 90 s" : "En emisión · 90 s";
+        }
+    };
+
+    let cinemaHeld = false;
+    let soundUnlocked = false;
+
+    const playCinema = () => {
+        if (!cinemaVideo) {
+            return;
+        }
+        cinemaHeld = false;
+        cinemaVideo.play().catch(() => {});
+        syncCinemaUi();
+    };
+
+    const pauseCinema = () => {
+        if (!cinemaVideo) {
+            return;
+        }
+        cinemaHeld = true;
+        cinemaVideo.pause();
+        syncCinemaUi();
+    };
+
+    const unlockSound = () => {
+        if (!cinemaVideo) {
+            return;
+        }
+        soundUnlocked = true;
+        cinemaVideo.muted = false;
+        playCinema();
+        if (cinemaPlay) {
+            cinemaPlay.hidden = true;
         }
     };
 
     if (cinemaVideo) {
         if (!reduceMotion) {
-            startCinema();
-            const watcher = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        startCinema();
-                    }
-                });
-            }, { threshold: 0.3 });
-            watcher.observe(cinemaVideo);
+            playCinema();
         }
 
-        cinemaSound?.addEventListener("click", () => {
-            cinemaVideo.muted = false;
-            cinemaVideo.play().catch(() => {});
-            cinemaSound.hidden = true;
-        });
+        cinemaPlay?.addEventListener("click", unlockSound);
 
-        cinemaVideo.addEventListener("volumechange", () => {
-            if (cinemaSound) {
-                cinemaSound.hidden = !cinemaVideo.muted;
+        cinemaToggle?.addEventListener("click", () => {
+            if (cinemaVideo.paused) {
+                playCinema();
+            } else {
+                pauseCinema();
             }
         });
+
+        cinemaMute?.addEventListener("click", () => {
+            if (cinemaVideo.muted) {
+                unlockSound();
+            } else {
+                cinemaVideo.muted = true;
+                syncCinemaUi();
+            }
+        });
+
+        cinemaSeek?.addEventListener("input", () => {
+            const duration = cinemaVideo.duration || 90;
+            cinemaVideo.currentTime = (Number(cinemaSeek.value) / 1000) * duration;
+            syncCinemaUi();
+        });
+
+        ["timeupdate", "loadedmetadata", "play", "pause", "volumechange", "ended"].forEach((eventName) => {
+            cinemaVideo.addEventListener(eventName, syncCinemaUi);
+        });
+
+        cinemaVideo.addEventListener("ended", () => {
+            cinemaHeld = true;
+            if (cinemaPlay && cinemaVideo.muted) {
+                cinemaPlay.hidden = false;
+            }
+            syncCinemaUi();
+        });
+
+        cinemaFs?.addEventListener("click", () => {
+            const node = cinemaScreen || cinemaVideo;
+            if (document.fullscreenElement || document.webkitFullscreenElement) {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else {
+                    document.webkitExitFullscreen?.();
+                }
+                return;
+            }
+            if (node.requestFullscreen) {
+                node.requestFullscreen();
+            } else {
+                node.webkitRequestFullscreen?.();
+            }
+        });
+
+        document.addEventListener("fullscreenchange", syncCinemaUi);
+        document.addEventListener("webkitfullscreenchange", syncCinemaUi);
+
+        document.addEventListener("keydown", (event) => {
+            const tag = event.target.tagName;
+            if (tag === "INPUT" || tag === "TEXTAREA" || tag === "BUTTON" || event.target.isContentEditable) {
+                return;
+            }
+            const inCinema = cinemaScreen?.contains(document.activeElement) || cinemaScreen?.matches(":hover");
+            if (!inCinema) {
+                return;
+            }
+            if (event.key === " " || event.key.toLowerCase() === "k") {
+                event.preventDefault();
+                if (cinemaVideo.paused) {
+                    playCinema();
+                } else {
+                    pauseCinema();
+                }
+            }
+            if (event.key.toLowerCase() === "m") {
+                if (cinemaVideo.muted) {
+                    unlockSound();
+                } else {
+                    cinemaVideo.muted = true;
+                    syncCinemaUi();
+                }
+            }
+            if (event.key.toLowerCase() === "f") {
+                cinemaFs?.click();
+            }
+        });
+
+        syncCinemaUi();
     }
 
     const activateAxis = (axis) => {

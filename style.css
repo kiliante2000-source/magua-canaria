@@ -838,20 +838,43 @@ body.nav-open .menu-toggle-bars::after {
 }
 
 .cinema {
+    --cinema-frame: min(100% - 2.5rem, calc((100svh - var(--header-h) - 16.5rem) * 16 / 9), 1180px);
     background: var(--navy);
     color: var(--white);
-    padding: clamp(3rem, 7vw, 5.5rem) 0 0;
-    scroll-margin-top: calc(var(--header-h) + 8px);
+    min-height: 100svh;
+    padding: 0;
+    scroll-margin-top: 0;
+    display: flex;
+    flex-direction: column;
 }
 
-.cinema-head,
+.cinema-body {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: calc(var(--header-h) + 1.1rem) 0 1.4rem;
+    box-sizing: border-box;
+}
+
 .gallery-head {
     max-width: var(--max);
     margin: 0 auto;
-    padding: 0 var(--pad) 1.6rem;
+    padding: 0 var(--pad) 1.1rem;
     display: grid;
     grid-template-columns: 1fr;
     gap: 0.4rem 1.2rem;
+    align-items: end;
+}
+
+.cinema-head {
+    width: var(--cinema-frame);
+    margin: 0 auto;
+    padding: 0 0 1rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.85rem 1.15rem;
     align-items: end;
 }
 
@@ -861,20 +884,46 @@ body.nav-open .menu-toggle-bars::after {
     max-width: 14ch;
 }
 
+.cinema h2 {
+    max-width: 16ch;
+}
+
 .cinema-lead {
-    margin-top: 0.7rem;
-    max-width: 46ch;
+    margin-top: 0.55rem;
+    max-width: 42ch;
     color: rgba(255, 255, 255, 0.78);
+}
+
+.cinema-stage {
+    width: var(--cinema-frame);
+    margin: 0 auto;
 }
 
 .cinema-screen {
     position: relative;
     width: 100%;
-    margin: 0 auto;
     aspect-ratio: 16 / 9;
-    background: #000;
     overflow: hidden;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    background: #000;
+    border-radius: 1.35rem;
+    box-shadow:
+        0 0 0 1px rgba(255, 204, 0, 0.28),
+        0 28px 70px rgba(0, 0, 0, 0.5);
+}
+
+.cinema-screen:focus,
+.cinema-screen:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 4px;
+}
+
+.cinema-screen:fullscreen,
+.cinema-screen:-webkit-full-screen {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    max-width: none;
+    border-radius: 0;
 }
 
 .cinema-video {
@@ -885,42 +934,203 @@ body.nav-open .menu-toggle-bars::after {
     border: 0;
     background: #000;
     object-fit: contain;
+    transition: filter 0.4s var(--ease);
 }
 
-.cinema-sound {
+.cinema-screen.is-paused .cinema-video {
+    filter: saturate(0.82) brightness(0.86);
+}
+
+.cinema-frame {
     position: absolute;
-    left: 50%;
-    bottom: 1.2rem;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.cinema-chip {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
     z-index: 3;
-    transform: translateX(-50%);
-    padding: 0.7rem 1.3rem;
-    border: 1px solid rgba(255, 204, 0, 0.55);
+    margin: 0;
+    padding: 0.42rem 0.8rem;
     border-radius: 999px;
-    background: rgba(7, 19, 31, 0.9);
+    background: rgba(7, 19, 31, 0.62);
+    border: 1px solid rgba(255, 204, 0, 0.28);
     color: var(--gold);
     font-family: "Futura Medium", sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.14em;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
+    backdrop-filter: blur(12px);
+    pointer-events: none;
+}
+
+.cinema-dock {
+    position: absolute;
+    left: 0.9rem;
+    right: 0.9rem;
+    bottom: 0.9rem;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-height: 58px;
+    padding: 0.45rem 0.55rem 0.45rem 0.5rem;
+    border-radius: 999px;
+    background: rgba(7, 19, 31, 0.58);
+    border: 1px solid rgba(255, 204, 0, 0.28);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(18px);
+}
+
+.cinema-hit {
+    position: relative;
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--gold);
     cursor: pointer;
-    backdrop-filter: blur(10px);
 }
 
-.cinema-sound[hidden] {
-    display: none;
-}
-
-.cinema-sound:hover,
-.cinema-sound:focus-visible {
+.cinema-hit:hover,
+.cinema-hit:focus-visible {
     background: var(--gold);
     color: var(--ink);
 }
 
-.cinema-play {
+.cinema-glyph {
     position: absolute;
     inset: 0;
+    margin: auto;
+}
+
+.cinema-glyph-play {
+    display: none;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 8px 0 8px 14px;
+    border-color: transparent transparent transparent currentColor;
+    margin: auto auto auto 16px;
+}
+
+.cinema-glyph-pause {
+    width: 12px;
+    height: 14px;
+    border-left: 4px solid currentColor;
+    border-right: 4px solid currentColor;
+}
+
+#cinema-toggle.is-paused .cinema-glyph-pause {
+    display: none;
+}
+
+#cinema-toggle.is-paused .cinema-glyph-play {
+    display: block;
+}
+
+.cinema-mute img {
+    width: 70%;
+    height: 70%;
+    margin: 15%;
+    opacity: 0.4;
+    transition: opacity 0.3s var(--ease), filter 0.3s var(--ease);
+}
+
+.cinema-mute.is-live img {
+    opacity: 1;
+    filter: drop-shadow(0 0 10px rgba(255, 204, 0, 0.7));
+}
+
+.cinema-expand {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    inset: 0;
+    margin: auto;
+    background:
+        linear-gradient(currentColor, currentColor) 0 0 / 6px 2px no-repeat,
+        linear-gradient(currentColor, currentColor) 0 0 / 2px 6px no-repeat,
+        linear-gradient(currentColor, currentColor) 100% 0 / 6px 2px no-repeat,
+        linear-gradient(currentColor, currentColor) 100% 0 / 2px 6px no-repeat,
+        linear-gradient(currentColor, currentColor) 0 100% / 6px 2px no-repeat,
+        linear-gradient(currentColor, currentColor) 0 100% / 2px 6px no-repeat,
+        linear-gradient(currentColor, currentColor) 100% 100% / 6px 2px no-repeat,
+        linear-gradient(currentColor, currentColor) 100% 100% / 2px 6px no-repeat;
+}
+
+.cinema-now,
+.cinema-end {
+    flex: 0 0 auto;
+    min-width: 2.6rem;
+    color: rgba(255, 255, 255, 0.86);
+    font-family: "Futura Medium", sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    font-variant-numeric: tabular-nums;
+}
+
+.cinema-end {
+    text-align: right;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.cinema-seek {
+    flex: 1 1 auto;
+    height: 18px;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+    accent-color: var(--gold);
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.cinema-seek::-webkit-slider-runnable-track {
+    height: 3px;
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.cinema-seek::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    margin-top: -6.5px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 3px var(--ink), 0 0 16px rgba(255, 204, 0, 0.65);
+}
+
+.cinema-seek::-moz-range-track {
+    height: 3px;
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.cinema-seek::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 3px var(--ink), 0 0 16px rgba(255, 204, 0, 0.65);
+}
+
+.cinema-play {
+    position: absolute;
+    inset: 0 0 5.2rem;
     width: 100%;
-    height: 100%;
+    height: auto;
     padding: 0;
     border: 0;
     background: transparent;
@@ -950,8 +1160,7 @@ body.nav-open .menu-toggle-bars::after {
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(180deg, rgba(7, 19, 31, 0.2) 0%, rgba(7, 19, 31, 0.18) 38%, rgba(7, 19, 31, 0.78) 100%),
-        radial-gradient(circle at 50% 42%, rgba(7, 19, 31, 0.18), transparent 55%);
+        linear-gradient(180deg, rgba(7, 19, 31, 0.18) 0%, rgba(7, 19, 31, 0.22) 48%, rgba(7, 19, 31, 0.52) 100%);
 }
 
 .play-ui {
@@ -1052,6 +1261,8 @@ body.nav-open .menu-toggle-bars::after {
 }
 
 .cinema-rail {
+    width: 100%;
+    flex-shrink: 0;
     height: 12px;
     background: linear-gradient(
         90deg,
@@ -1280,7 +1491,7 @@ body.nav-open .menu-toggle-bars::after {
 
 .poster-stack {
     position: relative;
-    height: clamp(480px, 72vh, 860px);
+    height: clamp(420px, 58vh, 680px);
     margin: 0 auto 1.4rem;
     max-width: min(1480px, 100%);
     perspective: 1800px;
@@ -1348,6 +1559,7 @@ body.nav-open .menu-toggle-bars::after {
     justify-content: center;
     align-items: center;
     gap: 0.7rem;
+    padding: 0.4rem 0 0.8rem;
 }
 
 .icon-btn,
@@ -1554,9 +1766,14 @@ body.nav-open .menu-toggle-bars::after {
     transform: none;
 }
 
+.lightbox[open] {
+    display: flex;
+    flex-direction: column;
+}
+
 .lightbox {
     width: min(1100px, 96vw);
-    max-height: 94vh;
+    max-height: 92svh;
     border: 0;
     border-radius: 1.2rem;
     padding: 0;
@@ -1574,8 +1791,8 @@ body.nav-open .menu-toggle-bars::after {
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    padding: 0.85rem 1rem;
-    border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+    padding: 0.95rem 1rem;
+    border-top: 1px solid rgba(17, 17, 17, 0.08);
     font-family: "Futura Medium", sans-serif;
 }
 
@@ -1583,12 +1800,12 @@ body.nav-open .menu-toggle-bars::after {
     border-radius: 999px;
     background: var(--ink);
     color: var(--white);
-    padding: 0.45rem 0.9rem;
+    padding: 0.55rem 1.05rem;
 }
 
 .lightbox img {
     width: 100%;
-    max-height: calc(92vh - 4rem);
+    max-height: calc(92svh - 5.2rem);
     object-fit: contain;
     background: #f3f3f3;
 }
@@ -1614,6 +1831,18 @@ html.js .reveal.is-visible {
         font-size: 2.4rem;
     }
 
+    .cinema-end {
+        display: none;
+    }
+
+    .cinema-dock {
+        left: 0.55rem;
+        right: 0.55rem;
+        bottom: 0.55rem;
+        gap: 0.4rem;
+        padding: 0.35rem 0.4rem;
+    }
+
     .hero-line {
         white-space: normal;
     }
@@ -1637,7 +1866,7 @@ html.js .reveal.is-visible {
     }
 
     .poster-stack {
-        height: min(138vw, 74vh, 680px);
+        height: min(138vw, 62vh, 620px);
     }
 
     .poster,
@@ -1676,14 +1905,13 @@ html.js .reveal.is-visible {
         grid-template-columns: 1.1fr 0.9fr;
     }
 
-    .cinema-head,
     .gallery-head {
         grid-template-columns: auto 1fr;
         gap: 1rem 1.2rem;
     }
 
     .poster-stack {
-        height: clamp(560px, 74vh, 900px);
+        height: clamp(480px, 58vh, 720px);
     }
 }
 
@@ -1695,10 +1923,6 @@ html.js .reveal.is-visible {
 
     .footer-grid {
         grid-template-columns: 1.3fr 1fr 0.7fr;
-    }
-
-    .cinema-screen {
-        min-height: min(78vh, 920px);
     }
 }
 
