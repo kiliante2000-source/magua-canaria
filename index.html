@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Magua Canaria es una campaña de concienciación y valorización frente al deterioro de la cultura canaria. Consciencia y orgullo isleño.">
+    <meta name="theme-color" content="#0368AA">
+    <meta property="og:title" content="Magua Canaria — Consciencia y orgullo isleño">
+    <meta property="og:description" content="Campaña de concienciación y valorización de la cultura canaria: lengua, territorio y tradiciones.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+    <title>Magua Canaria — Consciencia y orgullo isleño</title>
+    <link rel="icon" href="img/Sol.png" type="image/png">
+    <link rel="preload" href="img/Logo-horizontal.png" as="image">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="pointer-glow" id="pointer-glow" aria-hidden="true"></div>
+    <div class="cursor-sun" id="cursor-sun" aria-hidden="true"></div>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <div class="flag-bar" aria-hidden="true"></div>
+    <div class="progress" id="progress" aria-hidden="true"></div>
+
+    <header class="site-header" id="cabecera">
+        <div class="header-inner">
+            <a class="brand" href="#inicio" aria-label="Magua Canaria, ir al inicio">
+                <img src="img/Logo-horizontal.png" alt="Magua Canaria">
+            </a>
+
+            <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+                <span class="menu-toggle-bars" aria-hidden="true"></span>
+                <span class="visually-hidden">Abrir menú</span>
+            </button>
+
+            <nav id="menu-principal" class="site-nav" aria-label="Principal">
+                <ul>
+                    <li><a href="#campana">Campaña</a></li>
+                    <li><a href="#magua">Magua Canaria</a></li>
+                    <li><a href="#carteles">Carteles</a></li>
+                    <li><a href="#consejos">Consejos</a></li>
+                    <li><a class="nav-cta" href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="contenido">
+        <section class="hero" id="inicio">
+            <div class="hero-glow" aria-hidden="true"></div>
+            <div class="hero-play" id="hero-play" aria-hidden="true">
+                <div class="float-bit" data-kind="sun" style="--x: 4%; --y: 12%; --s: .72;">
+                    <span class="float-bit-inner"><img src="img/Sol.png" alt=""></span>
+                </div>
+                <div class="float-bit" data-kind="sun" style="--x: 18%; --y: 76%; --s: .48;">
+                    <span class="float-bit-inner"><img src="img/Sol.png" alt=""></span>
+                </div>
+                <div class="float-bit" data-kind="sun" style="--x: 93%; --y: 28%; --s: .58;">
+                    <span class="float-bit-inner"><img src="img/Sol.png" alt=""></span>
+                </div>
+                <div class="float-bit" data-kind="mar" style="--x: 2%; --y: 48%; --s: .7;">
+                    <span class="float-bit-inner"><img src="img/Mar.png" alt=""></span>
+                </div>
+                <div class="float-bit" data-kind="mar" style="--x: 84%; --y: 76%; --s: .55;">
+                    <span class="float-bit-inner"><img src="img/Mar.png" alt=""></span>
+                </div>
+                <div class="float-bit" data-kind="guanche" style="--x: 96%; --y: 8%; --s: .5;">
+                    <span class="float-bit-inner"><img src="img/Guanche.png" alt=""></span>
+                </div>
+                <div class="float-bit" data-kind="guanche" style="--x: 46%; --y: 82%; --s: .42;">
+                    <span class="float-bit-inner"><img src="img/Guanche.png" alt=""></span>
+                </div>
+                <div class="float-bit float-chip" data-kind="chip" style="--x: 62%; --y: 18%; --s: 1;">
+                    <span class="float-bit-inner">¡CHACHO!</span>
+                </div>
+                <div class="float-bit float-ring" data-kind="ring" style="--x: 3%; --y: 30%; --s: .9;">
+                    <span class="float-bit-inner">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="24" r="16" stroke="#ffcc00" stroke-width="4"/>
+                            <circle cx="24" cy="24" r="7" fill="#0368aa"/>
+                        </svg>
+                    </span>
+                </div>
+                <div class="float-bit float-ring" data-kind="ring" style="--x: 90%; --y: 52%; --s: .75;">
+                    <span class="float-bit-inner">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="24" r="17" stroke="#0368aa" stroke-width="4"/>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+            <div class="hero-grid">
+                <div class="hero-copy">
+                    <p class="eyebrow">Campaña de concienciación · Islas Canarias</p>
+                    <h1>
+                        <span class="hero-line">Echo fleje</span>
+                        <span class="hero-accent">de menos</span>
+                    </h1>
+                    <p class="hero-lead">
+                        Magua Canaria nace para emocionar, sensibilizar y frenar el deterioro
+                        de nuestra cultura. La lengua, el territorio y las tradiciones no son
+                        recuerdos: son el presente que aún podemos cuidar.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="#campana">Ver la campaña</a>
+                        <a class="btn btn-ghost" href="#carteles">Explorar los carteles</a>
+                    </div>
+                    <ul class="hero-pills" aria-label="Ejes de la campaña">
+                        <li><button type="button" data-jump="#eje-lengua">Lengua</button></li>
+                        <li><button type="button" data-jump="#eje-territorio">Territorio</button></li>
+                        <li><button type="button" data-jump="#eje-tradicion">Tradición</button></li>
+                    </ul>
+                    <p class="hero-stamp" id="hero-stamp">¡CHACHO!</p>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="brand-mark" id="brand-mark">
+                        <img class="brand-figure" src="img/Guanche logotipo sin Sol-07.png" alt="Figura ancestral de Magua Canaria">
+                        <button class="brand-sun-hit" id="brand-sun-hit" type="button" aria-label="Hacer girar el sol de Magua">
+                            <img class="brand-sun sol-gira" src="img/Sol.png" alt="">
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <a class="scroll-cue" href="#campana">
+                <span>Descubre</span>
+                <span class="scroll-cue-line" aria-hidden="true"></span>
+            </a>
+        </section>
+
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee-track">
+                <div class="marquee-group">
+                    <span class="marquee-item"><span class="marquee-sep"></span>¡CHACHO!</span>
+                    <span class="marquee-item"><span class="marquee-sep"></span>Echo fleje de menos</span>
+                    <span class="marquee-item"><span class="marquee-sep"></span>Consciencia y orgullo isleño</span>
+                    <span class="marquee-item"><span class="marquee-sep"></span>Magua Canaria</span>
+                    <span class="marquee-item"><span class="marquee-sep"></span>Lengua</span>
+                    <span class="marquee-item"><span class="marquee-sep"></span>Territorio</span>
+                    <span class="marquee-item"><span class="marquee-sep"></span>Tradición</span>
+                    <span class="marquee-item"><span class="marquee-sep"></span>Islas Canarias</span>
+                    <span class="marquee-item"><span class="marquee-sep"></span>Orgullo isleño</span>
+                </div>
+                <div class="marquee-group">
+                    <span class="marquee-item"><span class="marquee-sep"></span>¡CHACHO!</span>
+                    <span class="marquee-item"><span class="marquee-sep"></span>Echo fleje de menos</span>
+                    <span class="marquee-item"><span class="marquee-sep"></span>Consciencia y orgullo isleño</span>
+                    <span class="marquee-item"><span class="marquee-sep"></span>Magua Canaria</span>
+                    <span class="marquee-item"><span class="marquee-sep"></span>Lengua</span>
+                    <span class="marquee-item"><span class="marquee-sep"></span>Territorio</span>
+                    <span class="marquee-item"><span class="marquee-sep"></span>Tradición</span>
+                    <span class="marquee-item"><span class="marquee-sep"></span>Islas Canarias</span>
+                    <span class="marquee-item"><span class="marquee-sep"></span>Orgullo isleño</span>
+                </div>
+            </div>
+        </div>
+
+        <section class="cinema" id="campana">
+            <div class="cinema-head">
+                <p class="section-index">01</p>
+                <div>
+                    <p class="eyebrow eyebrow-light">Video publicitario</p>
+                    <h2>No dejes pasar este sentimiento</h2>
+                    <p class="cinema-lead">La pieza central de la campaña. Un minuto para emocionar, recordar y decidir que la cultura canaria no se rinde.</p>
+                </div>
+            </div>
+            <div class="cinema-screen" id="cinema-screen">
+                <iframe
+                    class="cinema-video"
+                    src="https://www.youtube-nocookie.com/embed/DaNuPrnyPkw?autoplay=1&rel=0&modestbranding=1&playsinline=1"
+                    title="Video publicitario de Magua Canaria"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                    referrerpolicy="strict-origin-when-cross-origin"
+                ></iframe>
+            </div>
+            <div class="cinema-rail" aria-hidden="true"></div>
+        </section>
+
+        <section class="section section-about" id="magua">
+            <div class="section-heading">
+                <p class="section-index">02</p>
+                <div>
+                    <p class="eyebrow">La campaña</p>
+                    <h2>Magua Canaria</h2>
+                </div>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-visual reveal">
+                    <div class="guanches">
+                        <div class="soles" aria-hidden="true">
+                            <span class="sol-slot sol-slot-1"><img class="sol sol-gira" src="img/Sol.png" alt=""></span>
+                            <span class="sol-slot sol-slot-2"><img class="sol sol-gira" src="img/Sol.png" alt=""></span>
+                            <span class="sol-slot sol-slot-3"><img class="sol sol-gira" src="img/Sol.png" alt=""></span>
+                        </div>
+                        <img class="img-guanches" src="img/Guanches sin sol.png" alt="Tres figuras ancestrales de la identidad Magua Canaria">
+                    </div>
+                </div>
+
+                <div class="about-copy reveal">
+                    <p class="lead">
+                        <strong>Magua Canaria es una campaña de concienciación y valorización que busca abordar el deterioro actual de la cultura canaria.</strong>
+                        Esta iniciativa tiene como objetivo principal emocionar y sensibilizar a la población local, a fin de que puedan reconocer la verdadera importancia de su patrimonio cultural en su vida diaria.
+                    </p>
+                    <p>
+                        Asimismo, busca despertar un interés social en torno a esta problemática actual, con el propósito de prevenir su deterioro. La campaña invita a la comunidad canaria no solo a sentir orgullo por su origen, sino también a educarse a través de la historia pasada y casi olvidada que sirvió de base para nuestras tradiciones, costumbres y valores.
+                    </p>
+                    <p>
+                        Esta mirada retrospectiva busca promover la preservación y promoción de la rica herencia cultural de las Islas Canarias, fomentando un sentido de identidad colectiva y fortaleciendo el tejido social en el archipiélago.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pillars">
+                <button class="pillar pillar-ink reveal" type="button" data-jump="#eje-lengua">
+                    <span class="pillar-icon"><img src="img/Guanche.png" alt=""></span>
+                    <h3>Lingüística local</h3>
+                    <p>Nuestra habla es memoria viva. Conservarla es seguir reconociéndonos.</p>
+                    <span class="pillar-go">Ver carteles</span>
+                </button>
+                <button class="pillar pillar-blue reveal" type="button" data-jump="#eje-territorio">
+                    <span class="pillar-icon"><img src="img/Mar.png" alt=""></span>
+                    <h3>Patrimonio natural</h3>
+                    <p>Playas, bosques y volcanes no son decorado: son el cuerpo de las islas.</p>
+                    <span class="pillar-go">Ver carteles</span>
+                </button>
+                <button class="pillar pillar-gold reveal" type="button" data-jump="#eje-tradicion">
+                    <span class="pillar-icon"><img src="img/Sol.png" alt=""></span>
+                    <h3>Tradición y costumbres</h3>
+                    <p>Las fiestas, los trajes y los oficios nos recuerdan de dónde venimos.</p>
+                    <span class="pillar-go">Ver carteles</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="gallery" id="carteles">
+            <div class="gallery-head">
+                <p class="section-index">03</p>
+                <div>
+                    <p class="eyebrow">Carteles promocionales</p>
+                    <h2>Tres colores, una misma urgencia</h2>
+                    <p class="section-help">Elige un eje y recorre el carrusel. El cartel del centro está a tamaño de lectura. Pulsa para ampliarlo.</p>
+                </div>
+            </div>
+
+            <div class="axis-tabs" role="tablist" aria-label="Ejes de los carteles">
+                <button type="button" role="tab" id="eje-lengua" class="is-on" data-axis="ink" aria-selected="true">Lingüística local</button>
+                <button type="button" role="tab" id="eje-territorio" data-axis="blue" aria-selected="false">Patrimonio natural</button>
+                <button type="button" role="tab" id="eje-tradicion" data-axis="gold" aria-selected="false">Tradición y costumbres</button>
+            </div>
+
+            <div class="poster-stage is-on theme-ink" data-axis="ink" role="tabpanel" aria-labelledby="eje-lengua">
+                <p class="stage-kicker">El habla canaria no es un adorno. Es una forma de habitar el mundo.</p>
+                <div class="poster-stack" data-stack="ink">
+                    <button class="poster" type="button" data-pos="left" data-full="img/folletos/Blanco/1_Blanco.png" aria-label="Cartel de lingüística local, pieza 1. Traer al frente">
+                        <img src="img/folletos/Blanco/1_Blanco.png" alt="Cartel Magua Canaria sobre lingüística local">
+                    </button>
+                    <button class="poster is-front" type="button" data-pos="center" data-full="img/folletos/Blanco/2_Blanco.png" aria-label="Cartel de lingüística local, pieza 2. Ya está al frente">
+                        <img src="img/folletos/Blanco/2_Blanco.png" alt="Cartel Magua Canaria: ¡CHACHO! Echo fleje de menos que me digan expresiones típicas de aquí">
+                    </button>
+                    <button class="poster" type="button" data-pos="right" data-full="img/folletos/Blanco/3_Blanco.png" aria-label="Cartel de lingüística local, pieza 3. Traer al frente">
+                        <img src="img/folletos/Blanco/3_Blanco.png" alt="Cartel Magua Canaria sobre lingüística local">
+                    </button>
+                </div>
+                <div class="poster-controls">
+                    <button class="icon-btn" type="button" data-dir="prev" aria-label="Cartel anterior de lingüística">‹</button>
+                    <button class="text-btn" type="button" data-action="zoom">Ampliar cartel</button>
+                    <button class="icon-btn" type="button" data-dir="next" aria-label="Cartel siguiente de lingüística">›</button>
+                </div>
+            </div>
+
+            <div class="poster-stage theme-blue" data-axis="blue" role="tabpanel" aria-labelledby="eje-territorio" hidden>
+                <p class="stage-kicker">Las islas son más que sol y playa. Cuidarlas es un acto cultural.</p>
+                <div class="poster-stack" data-stack="blue">
+                    <button class="poster" type="button" data-pos="left" data-full="img/folletos/Azul/1_Azul.png" aria-label="Cartel de patrimonio natural, pieza 1. Traer al frente">
+                        <img src="img/folletos/Azul/1_Azul.png" alt="Cartel Magua Canaria sobre patrimonio natural">
+                    </button>
+                    <button class="poster is-front" type="button" data-pos="center" data-full="img/folletos/Azul/2_Azul.png" aria-label="Cartel de patrimonio natural, pieza 2. Ya está al frente">
+                        <img src="img/folletos/Azul/2_Azul.png" alt="Cartel Magua Canaria: Echo fleje de menos cuando éramos un sitio más allá del Sol y las playas">
+                    </button>
+                    <button class="poster" type="button" data-pos="right" data-full="img/folletos/Azul/3_Azul.png" aria-label="Cartel de patrimonio natural, pieza 3. Traer al frente">
+                        <img src="img/folletos/Azul/3_Azul.png" alt="Cartel Magua Canaria sobre patrimonio natural">
+                    </button>
+                </div>
+                <div class="poster-controls">
+                    <button class="icon-btn" type="button" data-dir="prev" aria-label="Cartel anterior de patrimonio">‹</button>
+                    <button class="text-btn" type="button" data-action="zoom">Ampliar cartel</button>
+                    <button class="icon-btn" type="button" data-dir="next" aria-label="Cartel siguiente de patrimonio">›</button>
+                </div>
+            </div>
+
+            <div class="poster-stage theme-gold" data-axis="gold" role="tabpanel" aria-labelledby="eje-tradicion" hidden>
+                <p class="stage-kicker">Lo que no se practica, se olvida. Lo que se comparte, se queda.</p>
+                <div class="poster-stack" data-stack="gold">
+                    <button class="poster" type="button" data-pos="left" data-full="img/folletos/Amarillo/1_Amarillo.png" aria-label="Cartel de tradición y costumbres, pieza 1. Traer al frente">
+                        <img src="img/folletos/Amarillo/1_Amarillo.png" alt="Cartel Magua Canaria sobre tradición y costumbres">
+                    </button>
+                    <button class="poster is-front" type="button" data-pos="center" data-full="img/folletos/Amarillo/2_Amarillo.png" aria-label="Cartel de tradición y costumbres, pieza 2. Ya está al frente">
+                        <img src="img/folletos/Amarillo/2_Amarillo.png" alt="Cartel Magua Canaria: Echo fleje de menos preocuparme por conservar las especies endémicas de Canarias">
+                    </button>
+                    <button class="poster" type="button" data-pos="right" data-full="img/folletos/Amarillo/3_Amarillo.png" aria-label="Cartel de tradición y costumbres, pieza 3. Traer al frente">
+                        <img src="img/folletos/Amarillo/3_Amarillo.png" alt="Cartel Magua Canaria sobre tradición y costumbres">
+                    </button>
+                </div>
+                <div class="poster-controls">
+                    <button class="icon-btn" type="button" data-dir="prev" aria-label="Cartel anterior de tradición">‹</button>
+                    <button class="text-btn" type="button" data-action="zoom">Ampliar cartel</button>
+                    <button class="icon-btn" type="button" data-dir="next" aria-label="Cartel siguiente de tradición">›</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-tips" id="consejos">
+            <div class="section-heading">
+                <p class="section-index">04</p>
+                <div>
+                    <p class="eyebrow">Consejos culturales</p>
+                    <h2>Gestos pequeños, isla grande</h2>
+                    <p class="section-help">Marca los gestos que te llevas. El de vestimenta abre la guía de trajes típicos.</p>
+                    <p class="pledge-count">Compromisos de hoy: <strong id="pledge-count">0</strong>/9</p>
+                </div>
+            </div>
+
+            <div class="tips-grid">
+                <article class="tip-panel tip-ink reveal">
+                    <h3>Lingüística local</h3>
+                    <p>Nuestra lengua es parte de nuestra historia, nuestra cultura y nuestra forma de comunicarnos entre nosotros. Es importante conservarla y promover su uso en todos los ámbitos de la sociedad, para que las generaciones futuras puedan seguir disfrutando de esta riqueza lingüística que nos define. Es hora de tomar medidas concretas para preservar y revitalizar nuestra lengua, antes de que se pierda para siempre. Hagamos un esfuerzo conjunto para mantener viva nuestra lengua canaria.</p>
+                    <ul>
+                        <li>
+                            <button type="button">Lee e infórmate más sobre contenido y literatura canaria</button>
+                        </li>
+                        <li>
+                            <button type="button">Fomenta el uso del léxico canario en el ámbito familiar y educativo</button>
+                        </li>
+                        <li>
+                            <button type="button">Mantén conversaciones con personas mayores locales para aprender palabras y expresiones canarias</button>
+                        </li>
+                    </ul>
+                </article>
+
+                <article class="tip-panel tip-blue reveal">
+                    <h3>Patrimonio natural</h3>
+                    <p>Las playas, bosques y volcanes están siendo afectados por la contaminación, el cambio climático y la sobreexplotación. Es urgente que tomemos conciencia de la importancia de preservar estos espacios únicos que nos han brindado belleza y recursos durante siglos. Debemos actuar de manera enérgica y responsable para detener esta degradación y garantizar un futuro sostenible para las generaciones futuras. Juntos, podemos proteger y cuidar de nuestro patrimonio natural, porque nuestro hogar, nuestras Islas Canarias, lo merecen.</p>
+                    <ul>
+                        <li>
+                            <button type="button">Promueve la educación ambiental en los centros educativos</button>
+                        </li>
+                        <li>
+                            <button type="button">Reduce el uso de plásticos y promueve el reciclaje en todas las islas</button>
+                        </li>
+                        <li>
+                            <button type="button">Fomenta el turismo sostenible con el entorno natural a través del senderismo</button>
+                        </li>
+                    </ul>
+                </article>
+
+                <article class="tip-panel tip-gold reveal">
+                    <h3>Tradición y costumbres</h3>
+                    <p>Es fundamental reconocer la importancia de nuestras raíces y valorar la riqueza cultural que nos define como pueblo. Ignorar nuestras tradiciones es perder parte de nuestra identidad y de lo que nos hace únicos. Es momento de despertar ese sentido de pertenencia y orgullo por lo que somos, de rescatar y preservar nuestras costumbres para dejar un legado a las futuras generaciones. Juntos podemos revivir nuestras tradiciones y demostrar al mundo la belleza y diversidad de nuestra cultura canaria. ¡No dejemos que se pierda lo que nos hace auténticos!</p>
+                    <ul>
+                        <li>
+                            <button type="button" data-lightbox="trajes" data-caption="Guía de trajes típicos canarios a precios accesibles">
+                                No dejes de ir correctamente vestido a fiestas populares locales
+                                <span class="tip-extra">Ver guía de trajes</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button">Fomenta la educación y el conocimiento de tradiciones canarias en centros educativos</button>
+                        </li>
+                        <li>
+                            <button type="button">Involucra a la comunidad en la preservación de costumbres a través de actividades participativas</button>
+                        </li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" id="contacto">
+        <div class="footer-grid">
+            <section>
+                <p class="eyebrow eyebrow-light">La campaña</p>
+                <p>La campaña publicitaria de concienciación y valorización frente al deterioro cultural canario, impulsada por el Gobierno de Canarias, tiene como objetivo llegar a toda la población local para promover el sentimiento de pertenencia y reforzar la identidad cultural de las islas.</p>
+                <p>Este proyecto pretende despertar una emoción nostálgica en la comunidad, con el fin de sensibilizar sobre las problemáticas actuales en el ámbito cultural canario. Es fundamental unir esfuerzos y trabajar juntos para preservar y promover la rica herencia cultural de las islas. ¡Únete a esta importante iniciativa social y colectiva!</p>
+            </section>
+
+            <section>
+                <p class="eyebrow eyebrow-light">Contacto</p>
+                <p>Si estás interesado o interesada en más información acerca de este proyecto social, puedes ponerte en contacto con el equipo a través de las plataformas de la campaña.</p>
+                <ul class="contact-list">
+                    <li>
+                        <a href="https://wa.me/34617392421" rel="noopener noreferrer">
+                            <img src="img/iconos/WhatsApp_Logo.png" alt="">
+                            <span>+34 617 392 421</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tel:+34922856023">
+                            <span class="contact-spacer" aria-hidden="true"></span>
+                            <span>+34 922 856 023</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/maguacanaria" rel="noopener noreferrer" target="_blank">
+                            <img src="img/iconos/Instagram_Logo.png" alt="">
+                            <span>@maguacanaria</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/search/top?q=magua%20canaria" rel="noopener noreferrer" target="_blank">
+                            <img src="img/iconos/Facebook_Logo.png" alt="">
+                            <span>Magua Canaria</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://x.com/search?q=magua%20canaria" rel="noopener noreferrer" target="_blank">
+                            <img src="img/iconos/Twitter_Logo.png" alt="">
+                            <span>Cuenta oficial Magua Canaria</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="footer-brand">
+                <img class="marcas" src="img/Marca Canarias Blanca_Mesa de trabajo 1-04.png" alt="Gobierno de Canarias">
+                <p class="footer-note">Campaña de concienciación y valorización de la cultura canaria.</p>
+                <a class="btn btn-primary footer-cta" href="#consejos">Únete con un gesto</a>
+            </section>
+        </div>
+    </footer>
+
+    <p class="toast" id="toast" role="status" aria-live="polite" hidden></p>
+    <button class="to-top" id="to-top" type="button" aria-label="Volver arriba">↑</button>
+
+    <dialog class="lightbox" id="lightbox" aria-labelledby="lightbox-title">
+        <div class="lightbox-toolbar">
+            <p id="lightbox-title">Cartel de la campaña</p>
+            <form method="dialog">
+                <button type="submit" aria-label="Cerrar">Cerrar</button>
+            </form>
+        </div>
+        <img id="lightbox-image" src="img/folletos/Blanco/2_Blanco.png" alt="">
+    </dialog>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
