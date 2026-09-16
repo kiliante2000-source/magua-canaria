@@ -166,14 +166,21 @@
                 </div>
             </div>
             <div class="cinema-screen" id="cinema-screen">
-                <iframe
+                <video
                     class="cinema-video"
-                    src="https://www.youtube-nocookie.com/embed/DaNuPrnyPkw?autoplay=1&rel=0&modestbranding=1&playsinline=1"
+                    id="cinema-video"
+                    poster="img/video-portada.jpg"
                     title="Video publicitario de Magua Canaria"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen
-                    referrerpolicy="strict-origin-when-cross-origin"
-                ></iframe>
+                    preload="auto"
+                    playsinline
+                    muted
+                    autoplay
+                    controls
+                    controlslist="nodownload"
+                >
+                    <source src="video/magua-web.mp4" type="video/mp4">
+                </video>
+                <button class="cinema-sound" id="cinema-sound" type="button">Activar sonido</button>
             </div>
             <div class="cinema-rail" aria-hidden="true"></div>
         </section>

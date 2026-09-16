@@ -10,9 +10,7 @@ Autor: **Kilian Torres**.
 
 ## Video de la campaña
 
-El anuncio se carga al abrir la web, en la sección de la campaña:
-
-[https://www.youtube.com/watch?v=DaNuPrnyPkw](https://www.youtube.com/watch?v=DaNuPrnyPkw)
+El anuncio original se reproduce en la propia web, en la sección de la campaña (`video/magua-web.mp4`).
 
 ## Abrir en local
 
@@ -38,4 +36,5 @@ Después abre [http://localhost:8765](http://localhost:8765).
 - `style.css` — diseño e identidad
 - `script.js` — interacción
 - `img/` — logotipos, carteles, iconos y fotografías
+- `video/magua-web.mp4` — anuncio de la campaña
 - `fonts/` — familia Futura

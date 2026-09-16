@@ -86,8 +86,46 @@
         }, 2400);
     };
 
+    const cinemaVideo = document.getElementById("cinema-video");
+    const cinemaSound = document.getElementById("cinema-sound");
     const axisTabs = [...document.querySelectorAll(".axis-tabs [role='tab']")];
     const posterStages = [...document.querySelectorAll(".poster-stage")];
+
+    const startCinema = () => {
+        if (!cinemaVideo || !cinemaVideo.paused) {
+            return;
+        }
+        const playing = cinemaVideo.play();
+        if (playing && typeof playing.catch === "function") {
+            playing.catch(() => {});
+        }
+    };
+
+    if (cinemaVideo) {
+        if (!reduceMotion) {
+            startCinema();
+            const watcher = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        startCinema();
+                    }
+                });
+            }, { threshold: 0.3 });
+            watcher.observe(cinemaVideo);
+        }
+
+        cinemaSound?.addEventListener("click", () => {
+            cinemaVideo.muted = false;
+            cinemaVideo.play().catch(() => {});
+            cinemaSound.hidden = true;
+        });
+
+        cinemaVideo.addEventListener("volumechange", () => {
+            if (cinemaSound) {
+                cinemaSound.hidden = !cinemaVideo.muted;
+            }
+        });
+    }
 
     const activateAxis = (axis) => {
         axisTabs.forEach((tab) => {

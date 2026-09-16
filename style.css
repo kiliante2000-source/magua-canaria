@@ -884,6 +884,36 @@ body.nav-open .menu-toggle-bars::after {
     height: 100%;
     border: 0;
     background: #000;
+    object-fit: contain;
+}
+
+.cinema-sound {
+    position: absolute;
+    left: 50%;
+    bottom: 1.2rem;
+    z-index: 3;
+    transform: translateX(-50%);
+    padding: 0.7rem 1.3rem;
+    border: 1px solid rgba(255, 204, 0, 0.55);
+    border-radius: 999px;
+    background: rgba(7, 19, 31, 0.9);
+    color: var(--gold);
+    font-family: "Futura Medium", sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+}
+
+.cinema-sound[hidden] {
+    display: none;
+}
+
+.cinema-sound:hover,
+.cinema-sound:focus-visible {
+    background: var(--gold);
+    color: var(--ink);
 }
 
 .cinema-play {
